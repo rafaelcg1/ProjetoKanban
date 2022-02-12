@@ -1,2 +1,2 @@
 # ProjetoKanban
-Projeto de aplicação de um Kanban em Angular para o projeto de Formando DEVs Concert
+Projeto de aplicação de um Kanban em Angular para a Trilha de Formando DEVs Concert
