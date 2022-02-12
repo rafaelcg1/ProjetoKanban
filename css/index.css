@@ -118,13 +118,13 @@ label {
 }
 
 .grupo {
-  width: 33%;
-  display: inline-block;
-  padding: 10px 10px 10px 0;
+	width: 33%;
+	display: inline-block;
+	padding: 10px 10px 10px 0;
 }
 
 .grupo:nth-child(3n){
-  padding: 10px 0;
+  	padding: 10px 0;
 }
 
 button{
@@ -140,8 +140,8 @@ button{
 	border-color: #00263b;
 	width: 20%;
 	display: block;
-  clear: both;
-  margin: 10px 0px;
+  	clear: both;
+  	margin: 10px 0px;
 	transition: 0.5s background;
 }
 
@@ -150,13 +150,12 @@ button:hover{
 }
 
 .adicionar-cartao {
-  margin-top: 30px;
+	margin-top: 30px;
 }
 
 .copyright {
 	color: #020202;
 	font-size: 13px;
-	margin: 20px 0 0;
-  text-align: center;
-  margin-bottom: 5px;
+	margin: 10px 0 10px;
+	text-align: center;
 }
