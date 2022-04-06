@@ -1,0 +1,42 @@
+// Styles globais e mudança de variaveis bulma
+
+// Importar uma fonte do Google (Google Font)
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Lato:400,800,900');
+
+$family-sans-serif: "Nunito", sans-serif;
+
+// Mudar alguns dos componentes bulma
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+/* STYLES GLOBAIS */
+html, body {
+    height: 100%;
+}
+
+html {
+    background-image: url('https://i.pinimg.com/originals/a6/5a/b7/a65ab73bee9a0648aebfa1435a081edf.jpg');
+    background-size: cover;
+    overflow-y: auto !important;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

@@ -1,0 +1,130 @@
+<div class="root">
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="app-name has-gradient-text">ConcerTrello</h1>
+      </div>
+    </div>
+    <p>
+      <button class="botaoMenu" style="margin-right: 100px" (click)="modalService.open('newUserModal')">
+        <i class="fa-solid fa-plus fa-xl"></i>
+        <i class="fa-solid fa-user fa-xl"></i>
+      </button>
+    </p>
+    <p>
+      <button class="botaoMenu" (click)="modalService.open('newTaskModal')">
+        <i class="fa-solid fa-plus fa-xl"></i>
+        <i class="fa-solid fa-address-card fa-xl"></i>
+      </button>
+    </p>
+  </div>
+
+  <div class="board">
+    <div class="board-bar">
+      <p class="board-name">
+        {{ board.name }}
+      </p>
+    </div>
+    <div class="board-wrapper">
+      <div class="board-columns" cdkDropListGroup>
+        <div class="board-column" *ngFor="let column of board.columns">
+          <div class="column-title">
+            {{ column.name }}
+          </div>
+          <div class="tasks-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+            <div style="white-space: pre-wrap" class="task" *ngFor="let task of column.tasks" cdkDrag
+              (contextmenu)="displayContextMenu($event, task); (false)">
+              <app-context-menu *ngIf="rightClickMenuItems.length > 0 && isDisplayContextMenu"
+                [ngStyle]="getRightClickMenuStyle()" [contextMenuItems]="rightClickMenuItems"
+                (onContextMenuItemClick)="handleMenuItemClick($event)"></app-context-menu>
+                Título: {{ task.title }}<br/>
+                Descrição: {{ task.description }}<br/>
+                Responsável: {{ task.user }}<br/>
+                Estimativa: {{ task.estimate }} story points
+              <div class="idTask">
+                {{ task.idTask }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <jw-modal id="newUserModal">
+    <div class="jw-modal-header">
+      <button class="closeModal" (click)="modalService.close('newUserModal')">
+        <i class="fa-solid fa-times fa-xl"></i>
+      </button>
+      <h1 class="modalName">Adicionar Novo Colaborador</h1>
+    </div>
+    <form id="formAddUser">
+      <div class="grupo">
+        <label for="adicionaColaborador">Novo Colaborador:</label>
+        <input id="adicionaColaborador" name="adicionaColaborador" type="text" [(ngModel)]="newUser.name"
+          placeholder="Digite o nome do colaborador" class="campo campo-medio" />
+      </div>
+      <button (click)="addUser(newUser.name)" class="botaoAdicionar" id="botaoAddColaborador">
+        Adicionar
+      </button>
+    </form>
+  </jw-modal>
+
+  <jw-modal id="newTaskModal">
+    <div class="jw-modal-header" *ngIf="isEditTask == false">
+      <button class="closeModal" (click)="modalService.close('newTaskModal')">
+        <i class="fa-solid fa-times fa-xl"></i>
+      </button>
+      <h1 class="modalName">Adicionar Novo Cartão</h1>
+    </div>
+    <div class="jw-modal-header" *ngIf="isEditTask == true">
+      <button class="closeModal" (click)="closeEditModal()">
+        <i class="fa-solid fa-times fa-xl"></i>
+      </button>
+      <h1 class="modalName">Editar Cartão</h1>
+    </div>
+    <form id="formAddCard">
+      <div class="grupo">
+        <label for="tituloCartao">Título:</label>
+        <input id="tituloCartao" name="tituloCartao" type="text" [(ngModel)]="newTask.title" placeholder="Digite o título"
+          class="campo campo-medio" />
+      </div>
+      <div class="grupo">
+        <label for="descricaoCartao">Descrição:</label>
+        <input id="descricaoCartao" name="descricaoCartao" type="text" [(ngModel)]="newTask.description"
+          placeholder="Digite a descrição" class="campo campo-medio" />
+      </div>
+      <div class="grupo">
+        <label for="usuarioCartao">Colaborador responsável:</label>
+        <select id="usuarioCartao" name="usuarioCartao" [(ngModel)]="newTask.user" class="campo campo-medio">
+          <option [ngValue]="null" disabled>Selecione um colaborador</option>
+          <option *ngFor="let user of users" [ngValue]="user.name">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+      <div class="grupo">
+        <label for="estimativaCartao">Estimativa de prazo:</label>
+        <select id="estimativaCartao" name="estimativaCartao" [(ngModel)]="newTask.estimate" class="campo campo-medio">
+          <option [ngValue]="null" disabled>Defina a estimativa de entrega em storypoints</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>5</option>
+          <option>8</option>
+          <option>13</option>
+          <option>20</option>
+        </select>
+      </div>
+      <button (click)="addTask(newTask)" class="botaoAdicionar" id="botaoAddTask">
+        Adicionar
+      </button>
+    </form>
+  </jw-modal>
+
+  <footer>
+    <p class="copyright">
+      &copy; Um projeto feito por Rafael Campos na Trilha dos DEVs Concert
+    </p>
+  </footer>
+</div>
