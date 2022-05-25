@@ -22,9 +22,6 @@
   flex-direction: column;
   flex-grow: 1;
 
-  // Sobrepor tamanho minimo automatico
-  min-width: 0;
-  min-height: 0;
   .board-bar {
     background: rgba($color: gray, $alpha: 0.5);
     padding: 8px 15px;
@@ -48,6 +45,44 @@
         flex-basis: 0; // Forcar para que todas as colunas sejam do mesmo tamanho, independente do conteudo
         min-width: 300px;
         margin: 50px;
+        padding: 25px;
+        border-radius: 4px;
+        background: rgba($color: white, $alpha: 0.5);
+        &:not(:first-child) {
+          margin-left: 0;
+        }
+        .column-title {
+          font-size: 20px;
+          font-weight: 800;
+          font-family: "Lato", sans-serif;
+          color: #020202;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+.userBoard {
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  .userBoard-wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: clip;
+    .userBoard-columns {
+      display: flex;
+      flex-grow: 1;
+      .userBoard-column {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0; // Forcar para que todas as colunas sejam do mesmo tamanho, independente do conteudo
+        max-width: 25%;
+        margin: 50px;
+        margin-top: 0;
         padding: 25px;
         border-radius: 4px;
         background: rgba($color: white, $alpha: 0.5);

@@ -1,7 +1,7 @@
 import { Task } from "./task.model";
 
 export class Column {
-    constructor(public name: string, public tasks: Task[]){
+    constructor(public name: string, public tasks: Task[], public storyPercent: string){
 
     }
 }

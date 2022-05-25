@@ -29,7 +29,7 @@
       <div class="board-columns" cdkDropListGroup>
         <div class="board-column" *ngFor="let column of board.columns">
           <div class="column-title">
-            {{ column.name }}
+            {{ column.name }} | {{ column.storyPercent }}% DO TOTAL DE STORY POINTS
           </div>
           <div class="tasks-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
             <div style="white-space: pre-wrap" class="task" *ngFor="let task of column.tasks" cdkDrag
@@ -44,6 +44,23 @@
               <div class="idTask">
                 {{ task.idTask }}
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="userBoard">
+    <div class="userBoard-wrapper">
+      <div class="userBoard-columns">
+        <div class="userBoard-column">
+          <div class="column-title">
+            Usuários
+          </div>
+          <div class="tasks-container">
+            <div style="white-space: pre-wrap" class="task" *ngFor="let user of users">
+              {{ user.name }} : {{ user.storyPercent }}% de Story Points Concluídos
             </div>
           </div>
         </div>
@@ -107,13 +124,13 @@
         <label for="estimativaCartao">Estimativa de prazo:</label>
         <select id="estimativaCartao" name="estimativaCartao" [(ngModel)]="newTask.estimate" class="campo campo-medio">
           <option [ngValue]="null" disabled>Defina a estimativa de entrega em storypoints</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>5</option>
-          <option>8</option>
-          <option>13</option>
-          <option>20</option>
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="8">8</option>
+          <option [ngValue]="13">13</option>
+          <option [ngValue]="20">20</option>
         </select>
       </div>
       <button (click)="addTask(newTask)" class="botaoAdicionar" id="botaoAddTask">
